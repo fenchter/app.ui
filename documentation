@@ -1,0 +1,116 @@
+App.UI Documentation
+
+Getting the library:
+
+    local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/fenchter/app.ui/main/library.lua"))
+
+Now for creating a new window:
+
+    local window = library.newwindow({
+        minsize = Vector2.new(300,100);
+        maxsize = "viewportsize";
+        size = Vector2.new(300,100);
+        visible = true;
+        draggable = true;
+        resizeable = false;
+        title = "New Window";
+        interactables = {
+            minimize = true;
+            fullscreen = false;
+        };
+    })
+
+And from here on out you can either use the default library functions to build your UI or you can add items to the window yourself.
+
+Using the default library:
+
+Creating a tab
+
+    local tab = window.newtab("New Tab")
+
+Adding sections to the tab
+
+    local section = tab.newsection("New Section")
+
+Adding elements to the section (Not all values are required but will be replaced with default values.)
+
+    local toggle = section.newtoggle({
+        text = "New Toggle";
+        state = false;
+        callback = function(state)
+            print(state)
+        end;
+        savetofile = true;
+    })
+
+    local button = section.newbutton({
+        text = "New Button";
+        callback = function()
+            print("pressed")
+        end;
+    })
+    
+    local slider = section.newslider({
+        text = "New Slider";
+        min = -50;
+        max = 100;
+        state = 10;
+        callback = function(state)
+            print(state)
+        end;
+        savetofile = true;
+    })
+
+    local dropdown = section.newdropdown({
+        text = "New Dropdown";
+        options = {
+            "Option #1";
+            "Option #2";
+        };
+        state = "Option #1";
+        callback = function(state)
+            print(state)
+        end;
+        savetofile = true;
+    })
+
+    local colorpicker = section.newcolorpicker({
+        text = "New Colorpicker";
+        state = Color3.new(0.4,0.3,1);
+        callback = function(state)
+            print(state)
+        end;
+        savetofile = true;
+    })
+
+    local keybind = section.newkeybind({
+        text = "New Keybind";
+        state = "Space";
+        mode = "toggle";
+        callback = function(state)
+            print(state)
+        end;
+        savetofile = true;
+    })
+
+Fyi. elements like the colorpicker & keybind can be added to other elements.
+
+Adding elements yourself:
+    
+    (Window)
+    local frame = Instance.new("Frame")
+    frame.Parent = window.instance
+
+    (Tab)
+    local frame = Instance.new("Frame")
+    frame.Parent = tab.instance
+
+This goes for pretty much anything you can imagine.
+
+Make sure to change the values inside of "library" to your personal preferences.
+All currently available themes:
+
+dark
+light
+
+Thank you for choosing App.UI
